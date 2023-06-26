@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import { useNavigation } from "@react-navigation/native";
 import {
 	View,
 	Text,
@@ -10,9 +10,10 @@ import {
 	ImageBackground,
 } from "react-native";
 
-export default function AuthorizedPage({ navigation }) {
+export default function AuthorizedPage({}) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigation = useNavigation();
 
 	const handleLogin = () => {
 		console.log("Email:", email);
@@ -21,6 +22,11 @@ export default function AuthorizedPage({ navigation }) {
 		setEmail("");
 		setPassword("");
 	};
+	const handleContinue = () => {
+		navigation.navigate("NewsCategorySelection");
+	  };
+	
+
 
 	return (
 		<ImageBackground
@@ -71,7 +77,7 @@ export default function AuthorizedPage({ navigation }) {
 						</Text>
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity style={styles.continueButton}>
+				<TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
 					<Text style={styles.continueButtonText}>Continue</Text>
 				</TouchableOpacity>
 			</View>

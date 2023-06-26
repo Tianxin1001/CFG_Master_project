@@ -6,11 +6,18 @@ import {
 	StyleSheet,
 	ImageBackground,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-export default function WelcomePage({ navigation }) {
-	const handleLoginSignUp = () => {
-		navigation.navigate("Authorisation");
-	};
+export default function WelcomePage({}) {
+	const navigation = useNavigation();
+
+  	const handleContinueWithoutAccount = () => {
+    	navigation.navigate("NewsCategorySelection");
+  };
+
+  	const handleLoginSignUp = () => {
+    	navigation.navigate("Authorisation");
+  };
 
 	return (
 		<ImageBackground
@@ -25,8 +32,8 @@ export default function WelcomePage({ navigation }) {
 					<Text style={styles.buttonText}>Login / Sign Up</Text>
 				</TouchableOpacity>
 				<Text style={styles.orText}>or</Text>
-				<TouchableOpacity style={styles.link}>
-					<Text style={styles.linkText}>Continue without an account</Text>
+				<TouchableOpacity style={styles.link} onPress={handleContinueWithoutAccount}>
+					<Text style={styles.linkText} >Continue without an account</Text>
 				</TouchableOpacity>
 			</View>
 		</ImageBackground>
