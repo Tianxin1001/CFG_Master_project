@@ -3,12 +3,12 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export default function NewsCategorySelectionPage() {
-  const navigation = useNavigation();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+    const navigation = useNavigation();
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const handleCategorySelect = (category) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+    const handleCategorySelect = (category) => {
+        if (selectedCategories.includes(category)) {
+        setSelectedCategories(selectedCategories.filter((c) => c !== category));
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }

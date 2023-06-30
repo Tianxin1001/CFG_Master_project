@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Linking } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Linking, ScrollView, } from "react-native";
 
 export default function NewsListPage({ route }) {
   const { selectedCategories } = route.params;
@@ -63,19 +63,21 @@ export default function NewsListPage({ route }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.subbar}>
-        <Text style={styles.subbarText}>Selected Categories:</Text>
-        <View style={styles.selectedCategoriesContainer}>
-          {selectedCategories.map((category) => (
-            <TouchableOpacity
-              key={category}
-              style={styles.selectedCategoryButton}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.subbar}>
+            <Text style={styles.subbarText}>Selected Categories:</Text>
+            <View style={styles.selectedCategoriesContainer}>
+            {selectedCategories.map((category) => (
+                <TouchableOpacity
+                key={category}
+                style={styles.selectedCategoryButton}
             >
-              <Text style={styles.selectedCategoryButtonText}>{category}</Text>
+                <Text style={styles.selectedCategoryButtonText}>{category}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </View>
+      </ScrollView>
       <FlatList
         data={news}
         renderItem={renderNewsItem}
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
     backgroundColor: "#fff",
+    
   },
   subbarText: {
     fontSize: 18,
