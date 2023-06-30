@@ -10,10 +10,9 @@ import {
 	ImageBackground,
 } from "react-native";
 
-export default function AuthorizedPage({}) {
+export default function AuthorizedPage({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const navigation = useNavigation();
 
 	const handleLogin = () => {
 		console.log("Email:", email);
@@ -22,11 +21,6 @@ export default function AuthorizedPage({}) {
 		setEmail("");
 		setPassword("");
 	};
-	const handleContinue = () => {
-		navigation.navigate("NewsCategorySelection");
-	  	};
-	
-
 
 	return (
 		<ImageBackground
@@ -77,7 +71,10 @@ export default function AuthorizedPage({}) {
 						</Text>
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
+				<TouchableOpacity
+					style={styles.continueButton}
+					onPress={() => navigation.navigate("WorldMap")}
+				>
 					<Text style={styles.continueButtonText}>Continue</Text>
 				</TouchableOpacity>
 			</View>

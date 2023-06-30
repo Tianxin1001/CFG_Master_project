@@ -5,19 +5,17 @@ import {
 	TouchableOpacity,
 	StyleSheet,
 	ImageBackground,
+	Image,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
-export default function WelcomePage({}) {
-	const navigation = useNavigation();
+export default function WelcomePage({ navigation }) {
+	const handleLoginSignUp = () => {
+		navigation.navigate("Authorisation");
+	};
 
-  	const handleContinueWithoutAccount = () => {
-    	navigation.navigate("NewsCategorySelection");
-  };
-
-  	const handleLoginSignUp = () => {
-    	navigation.navigate("Authorisation");
-  };
+	const handleContinueWithoutAccount = () => {
+		navigation.navigate("WorldMap");
+	};
 
 	return (
 		<ImageBackground
@@ -25,6 +23,12 @@ export default function WelcomePage({}) {
 			style={styles.backgroundImage}
 		>
 			<View style={styles.container}>
+				<View style={styles.logoContainer}>
+					<Image
+						source={require("../Images/logo.png")}
+						style={styles.logoImage}
+					/>
+				</View>
 				<Text style={styles.message}>
 					Your personalised news starts here....
 				</Text>
@@ -32,8 +36,11 @@ export default function WelcomePage({}) {
 					<Text style={styles.buttonText}>Login / Sign Up</Text>
 				</TouchableOpacity>
 				<Text style={styles.orText}>or</Text>
-				<TouchableOpacity style={styles.link} onPress={handleContinueWithoutAccount}>
-					<Text style={styles.linkText} >Continue without an account</Text>
+				<TouchableOpacity
+					style={styles.link}
+					onPress={handleContinueWithoutAccount}
+				>
+					<Text style={styles.linkText}>Continue without an account</Text>
 				</TouchableOpacity>
 			</View>
 		</ImageBackground>
@@ -87,5 +94,14 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: "center",
 		textDecorationLine: "underline",
+	},
+	logoContainer: {
+		position: "absolute",
+		top: 50,
+		left: 10,
+	},
+	logoImage: {
+		width: 70,
+		height: 70,
 	},
 });
