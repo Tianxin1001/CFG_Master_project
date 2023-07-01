@@ -87,21 +87,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffe6e6",
   },
   headingContainer: {
-    marginBottom: 100,
+    marginBottom: 10,
   },
   heading: {
     fontSize: 24,
-    marginBottom: 30,
+    marginBottom: 20,
     textAlign: "center",
     fontWeight: "bold",
   },
   categoryButton: {
     backgroundColor: "white",
     borderWidth: 2,
-    paddingVertical: 13,
+    paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 25,
-    marginBottom: 20,
+    marginBottom: 10,
     marginLeft: 20,
   },
   categoryButtonContainer: {

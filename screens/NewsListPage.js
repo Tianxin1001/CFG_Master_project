@@ -106,7 +106,7 @@ export default function NewsListPage({ route }) {
         <View style={styles.loadingContainer}>
           <Image
             source={require('../assets/loading_anime.gif')} 
-            style={[styles.loadingImage, { width: 450, height: 850, alignSelf: 'center'}]} 
+            style={[styles.loadingImage, { width: 450, height: 800, alignSelf: 'center'}]} 
             resizeMode="cover"         
           />
         </View>
