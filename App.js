@@ -35,7 +35,7 @@ const App = () => {
           component={Continentcountries}
         />
         <Stack.Screen
-          name="NewsCategorySelection"
+          name="NewsCategorySelectionPage"
           component={NewsCategorySelectionPage} 
           options={{
             headerLeft: null,

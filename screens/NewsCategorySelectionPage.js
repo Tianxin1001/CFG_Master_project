@@ -17,7 +17,22 @@ export default function NewsCategorySelectionPage() {
   const handleGetNews = () => {
     navigation.navigate("NewsListPage", {
       selectedCategories: selectedCategories,
-      allCategories: ["general", "world", "nation", "business", "technology", "entertainment", "sports", "science", "health"],
+      allCategories: ["news",
+      "sport",
+      "tech",
+      "world",
+      "finance",
+      "politics",
+      "business",
+      "economics",
+      "entertainment",
+      "beauty",
+      "travel",
+      "music",
+      "food",
+      "science",
+      "gaming",
+      "energy",],
     });
   };
   
@@ -28,7 +43,23 @@ export default function NewsCategorySelectionPage() {
         <Text style={styles.heading}>Select Your Favourite Categories</Text>
       </View>
       <View style={styles.categoryButtonContainer}>
-        {["General", "World", "Nation", "Business", "Technology", "Entertainment", "Sports", "Science", "Health"].map((category) => (
+        {[  "news",
+            "sport",
+            "tech",
+            "world",
+            "finance",
+            "politics",
+            "business",
+            "economics",
+            "entertainment",
+            "beauty",
+            "travel",
+            "music",
+            "food",
+            "science",
+            "gaming",
+            "energy",
+          ].map((category) => (
           <TouchableOpacity
             key={category}
             style={[styles.categoryButton, selectedCategories.includes(category) && styles.selectedCategoryButton]}
@@ -88,7 +119,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   selectedCategoryButtonText: {
-    // fontWeight: "bold", // You can uncomment this line to make selected categories bold
+    // fontWeight: "bold"
   },
   continueButton: {
     backgroundColor: "black",

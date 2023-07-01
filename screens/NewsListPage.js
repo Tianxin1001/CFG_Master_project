@@ -1,16 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Linking, ScrollView, } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  Image,
+  Linking,
+  ScrollView,
+} from "react-native";
+import { API_KEY } from "../config/NewscatcherAPIKey";
 
 export default function NewsListPage({ route }) {
   const { selectedCategories } = route.params;
   const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const API_KEY = "2dc19639eb3c7a02b6aec6231cd4cf50";
+  const categoriesList = [
+    "news",
+    "sport",
+    "tech",
+    "world",
+    "finance",
+    "politics",
+    "business",
+    "economics",
+    "entertainment",
+    "beauty",
+    "travel",
+    "music",
+    "food",
+    "science",
+    "gaming",
+    "energy",
+  ];
 
   const fetchNews = async (category) => {
     try {
       const response = await fetch(
-        `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&apikey=${API_KEY}`
+        `https://api.newscatcherapi.com/v2/latest_headlines?topic=${category}&lang=en`,
+        {
+          headers: {
+            "x-api-key": API_KEY,
+          },
+        }
       );
       const result = await response.json();
       if (result && result.articles) {
@@ -28,20 +61,26 @@ export default function NewsListPage({ route }) {
   useEffect(() => {
     const fetchSelectedNews = async () => {
       const selectedNews = [];
-
+  
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  
       for (const category of selectedCategories) {
-        const categoryNews = await fetchNews(category);
-        selectedNews.push(...categoryNews);
+        if (categoriesList.includes(category)) {
+          await delay(1000); // Delay of 1 second before making each API request
+          const categoryNews = await fetchNews(category);
+          selectedNews.push(...categoryNews);
+        }
       }
 
       setNews(selectedNews);
+      setIsLoading(false);
     };
 
     fetchSelectedNews();
   }, [selectedCategories]);
 
   const handleNewsItemClick = (item) => {
-    Linking.openURL(item.url);
+    Linking.openURL(item.link);
   };
 
   const renderNewsItem = ({ item }) => (
@@ -50,42 +89,57 @@ export default function NewsListPage({ route }) {
       onPress={() => handleNewsItemClick(item)}
     >
       <Image
-        source={{ uri: item.image }}
+        source={{ uri: item.media || 'https://files.slack.com/files-pri/T05BN1XNLCQ-F05F2QENJH3/image.png' }}
         style={styles.newsImage}
         resizeMode="cover"
       />
       <View style={styles.newsContent}>
         <Text style={styles.newsTitle}>{item.title}</Text>
-        <Text style={styles.newsDescription}>{item.description}</Text>
+        <Text numberOfLines={3} style={styles.newsDescription}>{item.summary}</Text>
       </View>
     </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.subbar}>
-            <Text style={styles.subbarText}>Selected Categories:</Text>
-            <View style={styles.selectedCategoriesContainer}>
-            {selectedCategories.map((category) => (
-                <TouchableOpacity
-                key={category}
-                style={styles.selectedCategoryButton}
-            >
-                <Text style={styles.selectedCategoryButtonText}>{category}</Text>
-            </TouchableOpacity>
-          ))}
+      {isLoading ? ( // Conditional rendering of loading image
+        <View style={styles.loadingContainer}>
+          <Image
+            source={require('../assets/loading_anime.gif')} 
+            style={[styles.loadingImage, { width: 450, height: 850, alignSelf: 'center'}]} 
+            resizeMode="cover"         
+          />
         </View>
-      </View>
-      </ScrollView>
-      <FlatList
-        data={news}
-        renderItem={renderNewsItem}
-        keyExtractor={(item, index) => item.url + index}
-        contentContainerStyle={styles.newsList}
-      />
+      ) : (
+        <>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.subbar}>
+              <Text style={styles.subbarText}>Selected Categories:</Text>
+              <View style={styles.selectedCategoriesContainer}>
+                {selectedCategories.map((category) => (
+                  <TouchableOpacity
+                    key={category}
+                    style={styles.selectedCategoryButton}
+                  >
+                    <Text style={styles.selectedCategoryButtonText}>
+                      {category}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          </ScrollView>
+          <FlatList
+            data={news}
+            renderItem={renderNewsItem}
+            keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())} 
+            contentContainerStyle={styles.newsList}
+          />
+        </>
+      )}
     </View>
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -99,7 +153,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
     backgroundColor: "#fff",
-    
   },
   subbarText: {
     fontSize: 18,
@@ -129,6 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
+    height: 110,
   },
   newsImage: {
     width: 80,

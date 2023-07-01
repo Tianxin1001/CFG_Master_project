@@ -24,10 +24,6 @@ export default function WelcomePage({ navigation }) {
 		>
 			<View style={styles.container}>
 				<View style={styles.logoContainer}>
-					<Image
-						source={require("../Images/logo.png")}
-						style={styles.logoImage}
-					/>
 				</View>
 				<Text style={styles.message}>
 					Your personalised news starts here....

@@ -46,7 +46,7 @@ const ContinentCountries = ({ route, navigation }) => {
 	const handleChooseCategoriesPress = () => {
 		setShowPopup(false);
 		// Navigate to the page for choosing news categories
-		navigation.navigate("NewsCategories", { country: selectedCountry });
+		navigation.navigate("NewsCategorySelectionPage");
 	};
 
 	const renderCountryItem = ({ item }) => {
