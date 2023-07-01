@@ -5,9 +5,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import WelcomePage from "./screens/WelcomePage";
 import AuthorisedPage from "./screens/AuthorisedPage";
-import NewsCategorySelectionPage from "./screens/NewsCategorySelectionPage"; // Modified import
+import NewsCategorySelectionPage from "./screens/NewsCategorySelectionPage"; 
 import NewsListPage from "./screens/NewsListPage";
-
+import WorldMap from "./screens/WorldMap";
+import Continentcountries from "./screens/ContinentCountries";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,9 +26,17 @@ const App = () => {
           name="Authorisation" 
           component={AuthorisedPage} 
         />
+        <Stack.Screen 
+          name="WorldMap" 
+          component={WorldMap} 
+        />
+        <Stack.Screen
+          name="ContinentCountries"
+          component={Continentcountries}
+        />
         <Stack.Screen
           name="NewsCategorySelection"
-          component={NewsCategorySelectionPage} // Modified component
+          component={NewsCategorySelectionPage} 
           options={{
             headerLeft: null,
             headerBackTitleVisible: false,
@@ -41,7 +50,7 @@ const App = () => {
           name="NewsListPage" 
           component={NewsListPage}
           options={{
-            headerTitle: "News List", // Added header title
+            headerTitle: "News List", 
           }}
         />
       </Stack.Navigator>
