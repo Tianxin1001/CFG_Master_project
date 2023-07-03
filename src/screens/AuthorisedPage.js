@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -9,18 +9,42 @@ import {
 	StyleSheet,
 	ImageBackground,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function AuthorizedPage({ navigation }) {
+export default function AuthorisedPage({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
+	const dispatch = useDispatch();
+	const username = useSelector((state) => state.username);
 
 	const handleLogin = () => {
-		console.log("Email:", email);
-		console.log("Password:", password);
+		if (!email || !password) {
+			setErrorMessage("Please enter your email and password");
+			return;
+		}
+		if (email === "Test@test.com" && password === "test123") {
+			const extractedUsername = email.split("@")[0]; // Extract username from email
+			dispatch({ type: "changeUsername", payload: extractedUsername });
 
-		setEmail("");
-		setPassword("");
+			navigation.navigate("WorldMap");
+			setEmail("");
+			setPassword("");
+		} else {
+			dispatch({ type: "changeUsername", payload: null }); // Clear the username in Redux store
+			setErrorMessage("Please enter a valid email or password");
+			setEmail("");
+			setPassword("");
+		}
 	};
+
+	useEffect(() => {
+		const unsubscribe = navigation.addListener("focus", () => {
+			setErrorMessage("");
+		});
+
+		return unsubscribe;
+	}, [navigation]);
 
 	return (
 		<ImageBackground
@@ -52,6 +76,7 @@ export default function AuthorizedPage({ navigation }) {
 				<TouchableOpacity style={styles.button} onPress={handleLogin}>
 					<Text style={styles.buttonText}>Login</Text>
 				</TouchableOpacity>
+				{errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
 				<Text style={styles.disclaimer}>
 					*If the email address is not in our database, we will create a new
 					account for you
@@ -159,5 +184,13 @@ const styles = StyleSheet.create({
 		color: "#FFFFFF",
 		fontSize: 18,
 		textAlign: "center",
+	},
+	label: {
+		fontSize: 18,
+		marginBottom: 10,
+	},
+	error: {
+		color: "red",
+		marginBottom: 10,
 	},
 });
