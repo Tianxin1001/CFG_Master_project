@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
+import WelcomeMessage from "../components/welcomeMessage";
 
 const WorldMap = ({ navigation }) => {
 	const handleMarkerPress = (continent) => {
@@ -17,6 +18,7 @@ const WorldMap = ({ navigation }) => {
 
 	return (
 		<View style={styles.container}>
+			<WelcomeMessage />
 			<MapView
 				style={styles.map}
 				initialRegion={{
