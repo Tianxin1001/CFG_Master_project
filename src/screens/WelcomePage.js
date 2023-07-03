@@ -19,7 +19,7 @@ export default function WelcomePage({ navigation }) {
 
 	return (
 		<ImageBackground
-			source={require("../Images/background.png")}
+			source={require("../../assets/background.png")}
 			style={styles.backgroundImage}
 		>
 			<View style={styles.container}>

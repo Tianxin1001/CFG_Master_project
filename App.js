@@ -3,12 +3,12 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import WelcomePage from "./screens/WelcomePage";
-import AuthorisedPage from "./screens/AuthorisedPage";
-import NewsCategorySelectionPage from "./screens/NewsCategorySelectionPage"; 
-import NewsListPage from "./screens/NewsListPage";
-import WorldMap from "./screens/WorldMap";
-import Continentcountries from "./screens/ContinentCountries";
+import WelcomePage from "./src/screens/WelcomePage";
+import AuthorisedPage from "./src/screens/AuthorisedPage";
+import NewsCategorySelectionPage from "./src/screens/NewsCategorySelectionPage"; 
+import NewsListPage from "./src/screens/NewsListPage";
+import WorldMap from "./src/screens/WorldMap";
+import Continentcountries from "./src/screens/ContinentCountries";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

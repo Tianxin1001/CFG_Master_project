@@ -9,7 +9,7 @@ import {
   Linking,
   ScrollView,
 } from "react-native";
-import { API_KEY } from "../config/NewscatcherAPIKey";
+import { API_KEY } from "../../config/NewscatcherAPIKey";
 
 export default function NewsListPage({ route }) {
   const { selectedCategories } = route.params;
@@ -105,7 +105,7 @@ export default function NewsListPage({ route }) {
       {isLoading ? ( // Conditional rendering of loading image
         <View style={styles.loadingContainer}>
           <Image
-            source={require('../assets/loading_anime.gif')} 
+            source={require('../../assets/loading_anime.gif')} 
             style={[styles.loadingImage, { width: 450, height: 800, alignSelf: 'center'}]} 
             resizeMode="cover"         
           />
