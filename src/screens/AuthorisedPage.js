@@ -4,23 +4,19 @@ import { CheckBox } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
-
-
-export default function AuthorizedPage({ navigation }) {
-  const [email, setEmail] = useState('');
+export default function AuthorizedPage() {
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isChecked, setChecked] = useState(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      alert('Please enter both email and password');
-      return;
-    }
-
-    if (!isvalidateEmail(email)) {
-      alert('Please enter a valid email address');
+    if (!name || !password) {
+      alert('Please enter both name and password');
       return;
     }
 
@@ -30,16 +26,17 @@ export default function AuthorizedPage({ navigation }) {
     }
 
     try {
-      const storedUsername = await AsyncStorage.getItem('username');
-      const storedPassword = await AsyncStorage.getItem('password');
+      const storedAccounts = await AsyncStorage.getItem('accounts');
+      let accounts = storedAccounts ? JSON.parse(storedAccounts) : [];
 
-      if (email === storedUsername && password === storedPassword) {
+      const matchingAccount = accounts.find((account) => account.name === name && account.password === password);
+      if (matchingAccount) {
         alert('Login successful');
-        navigation.navigate('GreetingScreen', { username: email });
+        navigation.navigate('Profile');
       } else {
         Alert.alert(
           'Registration',
-          'The email address is not registered. Do you want to register now?',
+          'The Nickname is not registered. Do you want to register now?',
           [
             { text: 'Cancel', style: 'cancel' },
             { text: 'Register', onPress: handleRegister },
@@ -47,18 +44,34 @@ export default function AuthorizedPage({ navigation }) {
         );
       }
     } catch (error) {
-      console.error('Error retrieving stored credentials:', error);
+      console.error('Error retrieving stored accounts:', error);
     }
   };
 
   const handleRegister = async () => {
-    // Perform registration logic here
+    try {
+      const storedAccounts = await AsyncStorage.getItem('accounts');
+      let accounts = storedAccounts ? JSON.parse(storedAccounts) : [];
+
+      // Check if the name already exists
+      const existingAccount = accounts.find((account) => account.name === name);
+      if (existingAccount) {
+        alert('An account with this name already exists');
+        return;
+      }
+
+      // Add the new account
+      const newAccount = { name, password };
+      accounts.push(newAccount);
+      await AsyncStorage.setItem('accounts', JSON.stringify(accounts));
+
+      alert('Registration successful');
+      navigation.navigate('Profile');
+    } catch (error) {
+      console.error('Error storing accounts:', error);
+    }
   };
 
-  const isvalidateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
@@ -76,9 +89,9 @@ export default function AuthorizedPage({ navigation }) {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Email Address"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
+            placeholder="Nickname"
+            value={name}
+            onChangeText={(text) => setName(text)}
             autoCapitalize="none"
           />
         </View>
@@ -99,7 +112,7 @@ export default function AuthorizedPage({ navigation }) {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.disclaimer}>
-          *If the email address is not in our database, we will create a new account for you
+          *If the nickname is not in our database, we will create a new account for you
         </Text>
         <View style={styles.termsContainer}>
           <CheckBox

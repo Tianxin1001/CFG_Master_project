@@ -1,9 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const UserProfileButton = ({ onPress }) => {
+const UserProfileButton = () => {
+
+  const navigation = useNavigation();
+
+  const handleProfilePress = () => {
+    navigation.navigate('Profile');
+  };
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={handleProfilePress} style={styles.container}>
       <View style={styles.buttonWrapper}>
         <Image source={require('../../assets/user_profile_picture.png')} style={styles.icon} />
       </View>
