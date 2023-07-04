@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import WelcomeMessage from "../components/welcomeMessage";
+import UserProfileButton from '../components/UserProfileButton';
 
 const WorldMap = ({ navigation }) => {
 	const handleMarkerPress = (continent) => {
@@ -15,6 +16,19 @@ const WorldMap = ({ navigation }) => {
 			</TouchableOpacity>
 		</Callout>
 	);
+
+	const handleProfilePress = () => {
+		// Code to handle profile button press
+		// Add your logic here
+	  };
+
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+		  headerTitle: 'My Screen',
+		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+			});
+		}, [navigation]);
 
 	return (
 		<View style={styles.container}>

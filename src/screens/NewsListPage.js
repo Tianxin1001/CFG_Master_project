@@ -11,11 +11,25 @@ import {
 } from "react-native";
 import { API_KEY } from "../../config/NewscatcherAPIKey";
 import WelcomeMessage from "../components/welcomeMessage";
+import UserProfileButton from '../components/UserProfileButton';
 
 export default function NewsListPage({ route }) {
 	const { selectedCategories } = route.params;
 	const [news, setNews] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+
+	const handleProfilePress = () => {
+		// Code to handle profile button press
+		// Add your logic here
+	  };
+
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+		  headerTitle: 'My Screen',
+		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+			});
+		}, [navigation]);
 
 	const categoriesList = [
 		"news",
