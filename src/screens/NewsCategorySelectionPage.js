@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import WelcomeMessage from "../components/welcomeMessage";
-import UserProfileButton from '../components/UserProfileButton';
+import UserProfileButton from "../components/UserProfileButton";
+import styles from "../components/Styles";
 
 export default function NewsCategorySelectionPage() {
 	const navigation = useNavigation();
@@ -11,15 +12,14 @@ export default function NewsCategorySelectionPage() {
 	const handleProfilePress = () => {
 		// Code to handle profile button press
 		// Add your logic here
-	  };
-
+	};
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'My Screen',
-		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
-			});
-		}, [navigation]);
+			headerTitle: "My Screen",
+			headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+		});
+	}, [navigation]);
 
 	const handleCategorySelect = (category) => {
 		if (selectedCategories.includes(category)) {
@@ -54,12 +54,16 @@ export default function NewsCategorySelectionPage() {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.newsCategorySelectionPageStyles.container}>
 			<WelcomeMessage />
-			<View style={styles.headingContainer}>
-				<Text style={styles.heading}>Select Your Favourite Categories</Text>
+			<View style={styles.newsCategorySelectionPageStyles.headingContainer}>
+				<Text style={styles.newsCategorySelectionPageStyles.heading}>
+					Select Your Favourite Categories
+				</Text>
 			</View>
-			<View style={styles.categoryButtonContainer}>
+			<View
+				style={styles.newsCategorySelectionPageStyles.categoryButtonContainer}
+			>
 				{[
 					"news",
 					"sport",
@@ -81,17 +85,18 @@ export default function NewsCategorySelectionPage() {
 					<TouchableOpacity
 						key={category}
 						style={[
-							styles.categoryButton,
+							styles.newsCategorySelectionPageStyles.categoryButton,
 							selectedCategories.includes(category) &&
-								styles.selectedCategoryButton,
+								styles.newsCategorySelectionPageStyles.selectedCategoryButton,
 						]}
 						onPress={() => handleCategorySelect(category)}
 					>
 						<Text
 							style={[
-								styles.categoryButtonText,
+								styles.newsCategorySelectionPageStyles.categoryButtonText,
 								selectedCategories.includes(category) &&
-									styles.selectedCategoryButtonText,
+									styles.newsCategorySelectionPageStyles
+										.selectedCategoryButtonText,
 							]}
 						>
 							{category}
@@ -99,66 +104,14 @@ export default function NewsCategorySelectionPage() {
 					</TouchableOpacity>
 				))}
 			</View>
-			<TouchableOpacity style={styles.continueButton} onPress={handleGetNews}>
-				<Text style={styles.continueButtonText}>Get your News now!</Text>
+			<TouchableOpacity
+				style={styles.newsCategorySelectionPageStyles.continueButton}
+				onPress={handleGetNews}
+			>
+				<Text style={styles.newsCategorySelectionPageStyles.continueButtonText}>
+					Get your News now!
+				</Text>
 			</TouchableOpacity>
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		paddingHorizontal: 20,
-		backgroundColor: "#ffe6e6",
-	},
-	headingContainer: {
-		marginBottom: 10,
-	},
-	heading: {
-		fontSize: 24,
-		marginBottom: 20,
-		textAlign: "center",
-		fontWeight: "bold",
-	},
-	categoryButton: {
-		backgroundColor: "white",
-		borderWidth: 2,
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-		borderRadius: 25,
-		marginBottom: 10,
-		marginLeft: 20,
-	},
-	categoryButtonContainer: {
-		flexDirection: "row",
-		flexWrap: "wrap",
-		justifyContent: "center",
-		marginBottom: 10,
-	},
-	selectedCategoryButton: {
-		backgroundColor: "#F96638",
-	},
-	categoryButtonText: {
-		color: "black",
-		fontSize: 18,
-		textAlign: "center",
-	},
-	selectedCategoryButtonText: {
-		// fontWeight: "bold"
-	},
-	continueButton: {
-		backgroundColor: "black",
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-		borderRadius: 5,
-		marginTop: 20,
-	},
-	continueButtonText: {
-		color: "#FFFFFF",
-		fontSize: 18,
-		textAlign: "center",
-	},
-});

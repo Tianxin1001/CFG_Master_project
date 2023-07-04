@@ -3,11 +3,10 @@ import {
 	View,
 	Text,
 	TouchableOpacity,
-	StyleSheet,
 	ImageBackground,
 	Image,
 } from "react-native";
-
+import styles from "../components/Styles";
 
 export default function WelcomePage({ navigation }) {
 	const handleLoginSignUp = () => {
@@ -21,84 +20,31 @@ export default function WelcomePage({ navigation }) {
 	return (
 		<ImageBackground
 			source={require("../../assets/Start.png")}
-			style={styles.backgroundImage}
+			style={styles.welcomePageStyles.backgroundImage}
 		>
-			<View style={styles.container}>
-				<View style={styles.logoContainer}>
-				</View>
-				<Text style={styles.message}>
+			<View style={styles.welcomePageStyles.container}>
+				<View style={styles.welcomePageStyles.logoContainer}></View>
+				<Text style={styles.welcomePageStyles.message}>
 					Your personalised news starts here....
 				</Text>
-				<TouchableOpacity style={styles.button} onPress={handleLoginSignUp}>
-					<Text style={styles.buttonText}>Login / Sign Up</Text>
-				</TouchableOpacity>
-				<Text style={styles.orText}>or</Text>
 				<TouchableOpacity
-					style={styles.link}
+					style={styles.welcomePageStyles.button}
+					onPress={handleLoginSignUp}
+				>
+					<Text style={styles.welcomePageStyles.buttonText}>
+						Login / Sign Up
+					</Text>
+				</TouchableOpacity>
+				<Text style={styles.welcomePageStyles.orText}>or</Text>
+				<TouchableOpacity
+					style={styles.welcomePageStyles.link}
 					onPress={handleContinueWithoutAccount}
 				>
-					<Text style={styles.linkText}>Continue without an account</Text>
+					<Text style={styles.welcomePageStyles.linkText}>
+						Continue without an account
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</ImageBackground>
 	);
 }
-
-const styles = StyleSheet.create({
-	backgroundImage: {
-		flex: 1,
-		resizeMode: "cover",
-		justifyContent: "center",
-		color: "red",
-	},
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		paddingHorizontal: 20,
-	},
-	message: {
-		fontSize: 30,
-		marginBottom: 20,
-		textAlign: "center",
-		color: "black",
-		fontWeight: "bold",
-	},
-	button: {
-		backgroundColor: "black",
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-		borderRadius: 5,
-		marginBottom: 10,
-	},
-	buttonText: {
-		color: "#FFFFFF",
-		fontSize: 18,
-		textAlign: "center",
-		fontWeight: "bold",
-	},
-	orText: {
-		fontSize: 16,
-		marginTop: 10,
-		marginBottom: 5,
-		color: "#FFFFFF", // Add a text color for better visibility on the background image
-	},
-	link: {
-		marginBottom: 20,
-	},
-	linkText: {
-		color: "#007AFF",
-		fontSize: 16,
-		textAlign: "center",
-		textDecorationLine: "underline",
-	},
-	logoContainer: {
-		position: "absolute",
-		top: 50,
-		left: 10,
-	},
-	logoImage: {
-		width: 70,
-		height: 70,
-	},
-});

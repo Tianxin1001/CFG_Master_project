@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import WelcomeMessage from "../components/welcomeMessage";
-import UserProfileButton from '../components/UserProfileButton';
+import UserProfileButton from "../components/UserProfileButton";
+import styles from "../components/Styles";
 
 const WorldMap = ({ navigation }) => {
 	const handleMarkerPress = (continent) => {
@@ -18,22 +19,21 @@ const WorldMap = ({ navigation }) => {
 	);
 
 	const handleProfilePress = () => {
-		navigation.navigate('Profile');
+		navigation.navigate("Profile");
 	};
-
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'Select continent!',
-		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
-			});
-		}, [navigation]);
+			headerTitle: "Select continent!",
+			headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+		});
+	}, [navigation]);
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.worldMapStyles.container}>
 			<WelcomeMessage />
 			<MapView
-				style={styles.map}
+				style={styles.worldMapStyles.map}
 				initialRegion={{
 					latitude: 37.78825,
 					longitude: -122.4324,
@@ -87,23 +87,5 @@ const WorldMap = ({ navigation }) => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	map: {
-		flex: 1,
-	},
-	calloutButton: {
-		backgroundColor: "blue",
-		padding: 10,
-		borderRadius: 5,
-	},
-	calloutButtonText: {
-		color: "white",
-		fontWeight: "bold",
-	},
-});
 
 export default WorldMap;

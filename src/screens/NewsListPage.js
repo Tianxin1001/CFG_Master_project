@@ -3,7 +3,6 @@ import {
 	View,
 	Text,
 	TouchableOpacity,
-	StyleSheet,
 	FlatList,
 	Image,
 	Linking,
@@ -11,7 +10,8 @@ import {
 } from "react-native";
 import { API_KEY } from "../../config/NewscatcherAPIKey";
 import WelcomeMessage from "../components/welcomeMessage";
-import UserProfileButton from '../components/UserProfileButton';
+import UserProfileButton from "../components/UserProfileButton";
+import styles from "../components/Styles";
 
 export default function NewsListPage({ route }) {
 	const { selectedCategories } = route.params;
@@ -19,16 +19,15 @@ export default function NewsListPage({ route }) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const handleProfilePress = () => {
-		navigation.navigate('Profile');
-	  };
-
+		navigation.navigate("Profile");
+	};
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'My Screen',
-		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
-			});
-		}, [navigation]);
+			headerTitle: "My Screen",
+			headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+		});
+	}, [navigation]);
 
 	const categoriesList = [
 		"news",
@@ -121,14 +120,14 @@ export default function NewsListPage({ route }) {
 	);
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.newsListPageStyles.container}>
 			<WelcomeMessage />
 			{isLoading ? ( // Conditional rendering of loading image
-				<View style={styles.loadingContainer}>
+				<View style={styles.newsListPageStyles.loadingContainer}>
 					<Image
 						source={require("../../assets/loading_anime.gif")}
 						style={[
-							styles.loadingImage,
+							styles.newsListPageStyles.loadingImage,
 							{ width: 450, height: 800, alignSelf: "center" },
 						]}
 						resizeMode="cover"
@@ -137,15 +136,23 @@ export default function NewsListPage({ route }) {
 			) : (
 				<>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-						<View style={styles.subbar}>
-							<Text style={styles.subbarText}>Selected Categories:</Text>
-							<View style={styles.selectedCategoriesContainer}>
+						<View style={styles.newsListPageStyles.subbar}>
+							<Text style={styles.newsListPageStyles.subbarText}>
+								Selected Categories:
+							</Text>
+							<View
+								style={styles.newsListPageStyles.selectedCategoriesContainer}
+							>
 								{selectedCategories.map((category) => (
 									<TouchableOpacity
 										key={category}
-										style={styles.selectedCategoryButton}
+										style={styles.newsListPageStyles.selectedCategoryButton}
 									>
-										<Text style={styles.selectedCategoryButtonText}>
+										<Text
+											style={
+												styles.newsListPageStyles.selectedCategoryButtonText
+											}
+										>
 											{category}
 										</Text>
 									</TouchableOpacity>
@@ -159,71 +166,10 @@ export default function NewsListPage({ route }) {
 						keyExtractor={(item, index) =>
 							item.id ? item.id.toString() : index.toString()
 						}
-						contentContainerStyle={styles.newsList}
+						contentContainerStyle={styles.newsListPageStyles.newsList}
 					/>
 				</>
 			)}
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#ffe6e6",
-	},
-	subbar: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		padding: 10,
-		backgroundColor: "#fff",
-	},
-	subbarText: {
-		fontSize: 18,
-		fontWeight: "bold",
-	},
-	selectedCategoriesContainer: {
-		flexDirection: "row",
-		marginLeft: 10,
-	},
-	selectedCategoryButton: {
-		backgroundColor: "#F96638",
-		borderWidth: 2,
-		paddingVertical: 8,
-		paddingHorizontal: 16,
-		borderRadius: 20,
-		marginHorizontal: 5,
-	},
-	selectedCategoryButtonText: {
-		color: "#fff",
-		fontSize: 14,
-	},
-	newsList: {
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-	},
-	newsItem: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 20,
-		height: 110,
-	},
-	newsImage: {
-		width: 80,
-		height: 80,
-		marginRight: 10,
-		borderRadius: 4,
-	},
-	newsContent: {
-		flex: 1,
-	},
-	newsTitle: {
-		fontSize: 16,
-		fontWeight: "bold",
-		marginBottom: 5,
-	},
-	newsDescription: {
-		fontSize: 14,
-	},
-});

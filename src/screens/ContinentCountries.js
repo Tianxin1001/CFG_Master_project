@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-	StyleSheet,
-	View,
-	Text,
-	TouchableOpacity,
-	FlatList,
-	Modal,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Modal } from "react-native";
 import WelcomeMessage from "../components/welcomeMessage";
-import UserProfileButton from '../components/UserProfileButton';
+import UserProfileButton from "../components/UserProfileButton";
+import styles from "../components/Styles";
 
 const ContinentCountries = ({ route, navigation }) => {
 	const { continent } = route.params;
@@ -54,10 +48,12 @@ const ContinentCountries = ({ route, navigation }) => {
 	const renderCountryItem = ({ item }) => {
 		return (
 			<TouchableOpacity
-				style={styles.countryItem}
+				style={styles.continentCountriesStyles.countryItem}
 				onPress={() => handleCountryPress(item.name.common)}
 			>
-				<Text style={styles.countryName}>{item.name.common}</Text>
+				<Text style={styles.continentCountriesStyles.countryName}>
+					{item.name.common}
+				</Text>
 			</TouchableOpacity>
 		);
 	};
@@ -65,19 +61,21 @@ const ContinentCountries = ({ route, navigation }) => {
 	const handleProfilePress = () => {
 		// Code to handle profile button press
 		// Add your logic here
-	  };
+	};
 
 	React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: 'My Screen',
-      headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+		navigation.setOptions({
+			headerTitle: "My Screen",
+			headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
 		});
 	}, [navigation]);
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.continentCountriesStyles.container}>
 			<WelcomeMessage />
-			<Text style={styles.title}>{continent} Countries</Text>
+			<Text style={styles.continentCountriesStyles.title}>
+				{continent} Countries
+			</Text>
 
 			<FlatList
 				data={countries}
@@ -85,25 +83,29 @@ const ContinentCountries = ({ route, navigation }) => {
 				keyExtractor={(item) => item.cca3}
 			/>
 			<Modal visible={showPopup} animationType="fade" transparent>
-				<View style={styles.popupContainer}>
-					<View style={styles.popupContent}>
-						<Text style={styles.popupText}>
+				<View style={styles.continentCountriesStyles.popupContainer}>
+					<View style={styles.continentCountriesStyles.popupContent}>
+						<Text style={styles.continentCountriesStyles.popupText}>
 							Selected Country: {selectedCountry}
 						</Text>
 						<TouchableOpacity
-							style={styles.popupButton}
+							style={styles.continentCountriesStyles.popupButton}
 							onPress={handleChooseCategoriesPress}
 						>
-							<Text style={styles.popupButton}>
+							<Text style={styles.continentCountriesStyles.popupButton}>
 								Personalise your news experience. Choose news categories you're
 								interested in!
 							</Text>
 						</TouchableOpacity>
 						<TouchableOpacity
-							style={styles.popupCloseButton}
+							style={styles.continentCountriesStyles.popupCloseButton}
 							onPress={handlePopupClose}
 						>
-							<Text style={styles.popupCloseButtonText}>Close</Text>
+							<Text
+								style={styles.continentCountriesStyles.popupCloseButtonText}
+							>
+								Close
+							</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -111,94 +113,5 @@ const ContinentCountries = ({ route, navigation }) => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		padding: 20,
-		backgroundColor: "#ffe6e6",
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: "bold",
-		marginBottom: 20,
-	},
-	countryItem: {
-		paddingVertical: 10,
-		borderBottomWidth: 1,
-		borderBottomColor: "#ccc",
-	},
-	countryName: {
-		fontSize: 16,
-	},
-	button: {
-		marginTop: 20,
-		backgroundColor: "#007bff",
-		padding: 10,
-		borderRadius: 5,
-	},
-	buttonText: {
-		color: "#fff",
-		fontSize: 16,
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-	chooseCountryButton: {
-		backgroundColor: "blue",
-		padding: 10,
-		borderRadius: 5,
-		marginBottom: 10,
-	},
-	chooseCountryButtonText: {
-		color: "white",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-	chooseCategoriesButton: {
-		backgroundColor: "green",
-		padding: 10,
-		borderRadius: 5,
-	},
-	chooseCategoriesButtonText: {
-		color: "white",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-	popupContainer: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundColor: "rgba(0, 0, 0, 0.5)",
-	},
-	popupContent: {
-		backgroundColor: "white",
-		padding: 20,
-		borderRadius: 5,
-	},
-	popupText: {
-		fontSize: 18,
-		marginBottom: 10,
-	},
-	popupButton: {
-		backgroundColor: "#007bff",
-		padding: 10,
-		borderRadius: 5,
-		marginBottom: 10,
-	},
-	popupCloseButton: {
-		marginTop: 10,
-		backgroundColor: "blue",
-		padding: 10,
-		borderRadius: 5,
-		alignSelf: "center",
-	},
-	popupCloseButtonText: {
-		color: "white",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-});
 
 export default ContinentCountries;

@@ -1,5 +1,3 @@
-import { StyleSheet } from "react-native";
-
 const styles = {
 	//  Styles for AuthorisedPage
 	authorisedPageStyles: {
