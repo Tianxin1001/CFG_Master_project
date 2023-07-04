@@ -8,6 +8,7 @@ import {
 	Modal,
 } from "react-native";
 import WelcomeMessage from "../components/welcomeMessage";
+import UserProfileButton from '../components/UserProfileButton';
 
 const ContinentCountries = ({ route, navigation }) => {
 	const { continent } = route.params;
@@ -60,6 +61,18 @@ const ContinentCountries = ({ route, navigation }) => {
 			</TouchableOpacity>
 		);
 	};
+
+	const handleProfilePress = () => {
+		// Code to handle profile button press
+		// Add your logic here
+	  };
+
+	React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: 'My Screen',
+      headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+		});
+	}, [navigation]);
 
 	return (
 		<View style={styles.container}>

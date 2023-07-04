@@ -36,21 +36,58 @@ export default function App() {
 						component={WelcomePage}
 						options={{ headerShown: false }}
 					/>
-					<Stack.Screen name="Authorisation" component={AuthorisedPage} />
-					<Stack.Screen name="WorldMap" component={WorldMap} />
+					<Stack.Screen 
+						name="Authorisation" 
+						component={AuthorisedPage} 
+						options={{
+							headerStyle: {
+								height: 110,
+							},
+						}}
+					/>
+					<Stack.Screen 
+						name="WorldMap" 
+						component={WorldMap} 
+						options={{
+							headerStyle: {
+								height: 110,
+							},
+						}}
+					/>
 					<Stack.Screen
 						name="ContinentCountries"
 						component={Continentcountries}
+						options={{
+							headerStyle: {
+								height: 110,
+							},
+						}}
 					/>
 					<Stack.Screen
 						name="NewsCategorySelectionPage"
 						component={NewsCategorySelectionPage}
+						// options={{
+						// 	headerLeft: null,
+						// 	headerBackTitleVisible: false,
+						// 	headerStyle: {
+						// 	  backgroundColor: "#ffe6e6",
+						// 	},
+						// 	headerShown: false,
+						//   }}
+						options={{
+							headerStyle: {
+								height: 110,
+							},
+						}}
 					/>
 					<Stack.Screen
 						name="NewsListPage"
 						component={NewsListPage}
 						options={{
 							headerTitle: "News List",
+							headerStyle: {
+								height: 110,
+							},
 						}}
 					/>
 				</Stack.Navigator>

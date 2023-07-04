@@ -2,10 +2,24 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import WelcomeMessage from "../components/welcomeMessage";
+import UserProfileButton from '../components/UserProfileButton';
 
 export default function NewsCategorySelectionPage() {
 	const navigation = useNavigation();
 	const [selectedCategories, setSelectedCategories] = useState([]);
+
+	const handleProfilePress = () => {
+		// Code to handle profile button press
+		// Add your logic here
+	  };
+
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+		  headerTitle: 'My Screen',
+		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
+			});
+		}, [navigation]);
 
 	const handleCategorySelect = (category) => {
 		if (selectedCategories.includes(category)) {

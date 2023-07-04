@@ -8,6 +8,7 @@ import {
 	Image,
 } from "react-native";
 
+
 export default function WelcomePage({ navigation }) {
 	const handleLoginSignUp = () => {
 		navigation.navigate("Authorisation");
