@@ -9,7 +9,7 @@ import NewsCategorySelectionPage from "./src/screens/NewsCategorySelectionPage";
 import NewsListPage from "./src/screens/NewsListPage";
 import WorldMap from "./src/screens/WorldMap";
 import Continentcountries from "./src/screens/ContinentCountries";
-
+import Profile from "./src/screens/Profile"
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 
@@ -24,7 +24,7 @@ function reducer(state, action) {
 	}
 }
 
-const store = createStore(reducer, { username: "" });
+const store = createStore(reducer, { name: "" });
 
 export default function App() {
 	return (
@@ -39,6 +39,15 @@ export default function App() {
 					<Stack.Screen 
 						name="Authorisation" 
 						component={AuthorisedPage} 
+						options={{
+							headerStyle: {
+								height: 110,
+							},
+						}}
+					/>
+					<Stack.Screen
+						name="Profile"
+						component={Profile}
 						options={{
 							headerStyle: {
 								height: 110,

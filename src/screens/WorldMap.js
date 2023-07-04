@@ -18,14 +18,13 @@ const WorldMap = ({ navigation }) => {
 	);
 
 	const handleProfilePress = () => {
-		// Code to handle profile button press
-		// Add your logic here
-	  };
+		navigation.navigate('Profile');
+	};
 
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'My Screen',
+		  headerTitle: 'Select continent!',
 		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
 			});
 		}, [navigation]);

@@ -3,23 +3,23 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function WelcomeMessage() {
-	const username = useSelector((state) => state.username);
+	const name = useSelector((state) => state.name);
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
-		dispatch({ type: "changeUsername", payload: null });
+		dispatch({ type: "changeNickname", payload: null });
 	};
 
-	if (!username) {
-		return null; // Return null when username is null
+	if (!name) {
+		return null; // Return null when name is null
 	}
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.welcomeText}>Welcome, {username}!</Text>
-			<TouchableOpacity onPress={handleLogout}>
+			<Text style={styles.welcomeText}>Welcome, {name}!</Text>
+			{/* <TouchableOpacity onPress={handleLogout}>
 				<Text style={styles.logoutText}>Logout</Text>
-			</TouchableOpacity>
+			</TouchableOpacity> */}
 		</View>
 	);
 }
