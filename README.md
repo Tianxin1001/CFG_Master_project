@@ -12,21 +12,15 @@ The Personalised News App is a mobile application developed using React Native. 
 Follow these steps to install and run the Personalised News app:
 1. Clone the repository:
 `git clone https://github.com/your-username/personalised-news-app.git`
-
 2. Navigate to the project directory:
 `cd personalised-news-app`
-
 3. Install dependencies:
 `npm install`
-
 4. Configure API keys:
 Obtain an API key from the NewsCatcher API.
-
 5. Open the `config.js` file and replace `YOUR_API_KEY` with your actual API key.
-
 6. Run the app:
 `npm start`
-
 Follow the instructions to launch the app on your desired device or emulator.
 
 ## 💻Technologies Used
