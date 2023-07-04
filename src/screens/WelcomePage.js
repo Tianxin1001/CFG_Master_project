@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 	},
 	message: {
-		fontSize: 24,
+		fontSize: 30,
 		marginBottom: 20,
 		textAlign: "center",
 		color: "black",

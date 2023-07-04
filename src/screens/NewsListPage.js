@@ -19,8 +19,7 @@ export default function NewsListPage({ route }) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const handleProfilePress = () => {
-		// Code to handle profile button press
-		// Add your logic here
+		navigation.navigate('Profile');
 	  };
 
 
