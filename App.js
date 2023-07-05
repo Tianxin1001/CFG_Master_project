@@ -42,7 +42,7 @@ export default function App() {
 						options={{
 							headerTitle: '',
 							headerStyle: {
-								height: 110,
+								height: 100,
 							},
 						  }}
 					/>
