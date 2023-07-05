@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-// import WelcomeMessage from "../components/welcomeMessage";
 import UserProfileButton from '../components/UserProfileButton';
 
 export default function NewsCategorySelectionPage() {
@@ -60,7 +59,6 @@ export default function NewsCategorySelectionPage() {
 
 	return (
 		<View style={styles.container}>
-			{/* <WelcomeMessage /> */}
 			<View style={styles.headingContainer}>
 				<Text style={styles.heading}>Select Your Favourite Categories</Text>
 			</View>

@@ -40,17 +40,11 @@ export default function App() {
 						name="Authorisation" 
 						component={AuthorisedPage} 
 						options={{
+							headerTitle: '',
 							headerStyle: {
 								height: 110,
 							},
-							// headerLeft: null,
-						// 	headerBackTitleVisible: false,
-						// 	headerStyle: {
-						// 	  backgroundColor: "#ffe6e6",
-						// 	},
-						// 	headerShown: false,
-						//   }}
-						}}
+						  }}
 					/>
 					<Stack.Screen
 						name="Profile"
@@ -59,12 +53,6 @@ export default function App() {
 							headerStyle: {
 							height: 110,
 						},
-						// headerLeft: () => (
-						// 	<TouchableOpacity onPress={() => navigation.goBack()}>
-						// 		<Ionicons name="arrow-back" size={24} color="black" />
-						// 	</TouchableOpacity>
-						// ),
-						// headerBackTitleVisible: false,
            				})}
           			/>
 					<Stack.Screen 
@@ -88,14 +76,6 @@ export default function App() {
 					<Stack.Screen
 						name="NewsCategorySelectionPage"
 						component={NewsCategorySelectionPage}
-						// options={{
-						// 	headerLeft: null,
-						// 	headerBackTitleVisible: false,
-						// 	headerStyle: {
-						// 	  backgroundColor: "#ffe6e6",
-						// 	},
-						// 	headerShown: false,
-						//   }}
 						options={{
 							headerStyle: {
 								height: 110,

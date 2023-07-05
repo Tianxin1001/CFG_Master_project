@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		marginTop: 10,
 		marginBottom: 5,
-		color: "#FFFFFF", // Add a text color for better visibility on the background image
+		color: "#FFFFFF", 
 	},
 	link: {
 		marginBottom: 20,

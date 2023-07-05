@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
-// import WelcomeMessage from "../components/welcomeMessage";
 import UserProfileButton from '../components/UserProfileButton';
 
 const WorldMap = ({ navigation }) => {
@@ -31,7 +30,6 @@ const WorldMap = ({ navigation }) => {
 
 	return (
 		<View style={styles.container}>
-			{/* <WelcomeMessage /> */}
 			<MapView
 				style={styles.map}
 				initialRegion={{
