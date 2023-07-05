@@ -22,11 +22,16 @@ const Profile = ({ route }) => {
     setNewPassword('');
   };
 
+  const handleContinue = () => {
+    navigation.navigate('WorldMap');
+  };
+
+
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/user_profile_picture.png')} style={styles.userImage} />
 
-      <WelcomeMessage />
+      <WelcomeMessage user={user}/>
 
       <Text style={styles.heading}>Profile</Text>
       <Text style={styles.label}>Nickname:</Text>
@@ -36,6 +41,10 @@ const Profile = ({ route }) => {
 
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
         <Text style={styles.buttonText}>Logout</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleContinue}>
+        <Text style={styles.buttonText}>Start News Journey!</Text>
       </TouchableOpacity>
     </View>
   );

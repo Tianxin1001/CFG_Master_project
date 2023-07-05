@@ -10,7 +10,7 @@ import {
 	ScrollView,
 } from "react-native";
 import { API_KEY } from "../../config/NewscatcherAPIKey";
-import WelcomeMessage from "../components/welcomeMessage";
+// import WelcomeMessage from "../components/welcomeMessage";
 import UserProfileButton from '../components/UserProfileButton';
 
 export default function NewsListPage({ route }) {
@@ -122,7 +122,7 @@ export default function NewsListPage({ route }) {
 
 	return (
 		<View style={styles.container}>
-			<WelcomeMessage />
+			{/* <WelcomeMessage /> */}
 			{isLoading ? ( // Conditional rendering of loading image
 				<View style={styles.loadingContainer}>
 					<Image

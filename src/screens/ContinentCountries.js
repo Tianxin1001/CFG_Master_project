@@ -7,7 +7,7 @@ import {
 	FlatList,
 	Modal,
 } from "react-native";
-import WelcomeMessage from "../components/welcomeMessage";
+// import WelcomeMessage from "../components/welcomeMessage";
 import UserProfileButton from '../components/UserProfileButton';
 
 const ContinentCountries = ({ route, navigation }) => {
@@ -75,7 +75,7 @@ const ContinentCountries = ({ route, navigation }) => {
 
 	return (
 		<View style={styles.container}>
-			<WelcomeMessage />
+			{/* <WelcomeMessage /> */}
 			<Text style={styles.title}>{continent} Countries</Text>
 
 			<FlatList

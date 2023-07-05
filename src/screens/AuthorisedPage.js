@@ -32,7 +32,12 @@ export default function AuthorizedPage() {
       const matchingAccount = accounts.find((account) => account.name === name && account.password === password);
       if (matchingAccount) {
         alert('Login successful');
-        navigation.navigate('WorldMap');
+        navigation.navigate('Profile', {
+          user: {
+            name: name,
+            password: password,
+          },
+        });
       } else {
         Alert.alert(
           'Registration',

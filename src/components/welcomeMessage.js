@@ -1,12 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
 
-export default function WelcomeMessage() {
-  const user = useSelector((state) => state.user);
 
+export default function WelcomeMessage({ user }) {
   if (!user || !user.name) {
-    return null; // Return null when user or user.name is null
+    return <Text style={styles.welcomeText}>Welcome!</Text>;
   }
 
   return (
@@ -19,14 +17,16 @@ export default function WelcomeMessage() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 10,
     marginTop: 10,
   },
   welcomeText: {
-    fontSize: 18,
+    fontFamily: "Georgia",
+    fontSize: 24,
     fontWeight: "bold",
     color: "black",
+    textAlign: "center",
   },
 });
