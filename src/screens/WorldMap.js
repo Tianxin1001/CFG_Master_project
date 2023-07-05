@@ -24,7 +24,7 @@ const WorldMap = ({ navigation }) => {
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'Select continent!',
+		  headerTitle: 'Select News continent',
 		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
 			});
 		}, [navigation]);

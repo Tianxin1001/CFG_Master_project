@@ -9,8 +9,7 @@ export default function NewsCategorySelectionPage() {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const handleProfilePress = () => {
-		// Code to handle profile button press
-		// Add your logic here
+		navigation.navigate('Profile');
 	  };
 
 

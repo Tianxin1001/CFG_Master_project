@@ -63,8 +63,7 @@ const ContinentCountries = ({ route, navigation }) => {
 	};
 
 	const handleProfilePress = () => {
-		// Code to handle profile button press
-		// Add your logic here
+		navigation.navigate('Profile');
 	  };
 
 	React.useLayoutEffect(() => {
