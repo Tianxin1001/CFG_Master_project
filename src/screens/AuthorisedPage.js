@@ -32,7 +32,7 @@ export default function AuthorizedPage() {
       const matchingAccount = accounts.find((account) => account.name === name && account.password === password);
       if (matchingAccount) {
         alert('Login successful');
-        navigation.navigate('Profile');
+        navigation.navigate('WorldMap');
       } else {
         Alert.alert(
           'Registration',
@@ -66,7 +66,12 @@ export default function AuthorizedPage() {
       await AsyncStorage.setItem('accounts', JSON.stringify(accounts));
 
       alert('Registration successful');
-      navigation.navigate('Profile');
+      navigation.navigate('Profile', {
+        user: {
+          name: name,
+          password: password,
+        },
+      });
     } catch (error) {
       console.error('Error storing accounts:', error);
     }
@@ -133,12 +138,7 @@ export default function AuthorizedPage() {
             <Text style={[styles.termsText, styles.link]}>privacy statement</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.continueButton}
-          onPress={() => navigation.navigate('WorldMap')}
-        >
-          <Text style={styles.continueButtonText}>Continue</Text>
-        </TouchableOpacity>
+        
       </View>
     </ImageBackground>
   );

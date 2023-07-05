@@ -12,6 +12,8 @@ import Continentcountries from "./src/screens/ContinentCountries";
 import Profile from "./src/screens/Profile"
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,17 +45,30 @@ export default function App() {
 							headerStyle: {
 								height: 110,
 							},
+							// headerLeft: null,
+						// 	headerBackTitleVisible: false,
+						// 	headerStyle: {
+						// 	  backgroundColor: "#ffe6e6",
+						// 	},
+						// 	headerShown: false,
+						//   }}
 						}}
 					/>
 					<Stack.Screen
-						name="Profile"
-						component={Profile}
-						options={{
-							headerStyle: {
-								height: 110,
-							},
-						}}
-					/>
+            name="Profile"
+            component={Profile}
+            options={({ navigation }) => ({
+              headerStyle: {
+                height: 110,
+              },
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+      <Ionicons name="arrow-back" size={24} color="black" />
+    </TouchableOpacity>
+              ),
+              headerBackTitleVisible: false,
+            })}
+          />
 					<Stack.Screen 
 						name="WorldMap" 
 						component={WorldMap} 
