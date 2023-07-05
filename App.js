@@ -55,20 +55,20 @@ export default function App() {
 						}}
 					/>
 					<Stack.Screen
-            name="Profile"
-            component={Profile}
-            options={({ navigation }) => ({
-              headerStyle: {
-                height: 110,
-              },
-              headerLeft: () => (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-      <Ionicons name="arrow-back" size={24} color="black" />
-    </TouchableOpacity>
-              ),
-              headerBackTitleVisible: false,
-            })}
-          />
+						name="Profile"
+						component={Profile}
+						options={({ navigation }) => ({
+							headerStyle: {
+							height: 110,
+						},
+						// headerLeft: () => (
+						// 	<TouchableOpacity onPress={() => navigation.goBack()}>
+						// 		<Ionicons name="arrow-back" size={24} color="black" />
+						// 	</TouchableOpacity>
+						// ),
+						// headerBackTitleVisible: false,
+           				})}
+          			/>
 					<Stack.Screen 
 						name="WorldMap" 
 						component={WorldMap} 
