@@ -2,14 +2,18 @@
 The Personalised News App is a mobile application developed using React Native. It allows users to customize their news feed based on their preferred continent and news categories of interest. The app fetches news articles using the NewsCatcher API and provides a personalized reading experience.
 
 ## 🧰Features
-- User authentication: Users can create accounts, login to their existing accouunt or continue without logging in.
-- Explore Map: Users can directly access the map page to explore news articles based on specific regions. Once Logged in, users can customise their news feed by selecting preffered regions, countries, and news categories. 
+- User authentication: Users can create accounts, login to their existing account or continue without logging in.
+- Explore Map: Users can directly access the map page to explore news articles based on specific regions. Once Logged in, users can customise their news feed by selecting prefered regions, countries, and news categories. 
 - News category selection: Users can select news categories aligned with their interests.
 - News article display: Relevant news articles are fetched and displayed based on the selected categories.
 - Detailed article view: Users can read specific news articles in detail.
+
 ### 🏔️For Future Improvement
 - Bookmarking: Users can bookmark articles to save them for later reading.
 - Sharing: Users can share iteresting articles with others.
+- Filter news based on country: The app can implement filtering the news based on user selection.
+- User profile picture: User can change their profile picture.
+- Country selection: Replace the countries provided by the API with all countries in the world.
 
 ## 📂Installation
 Follow these steps to install and run the Personalised News app on your desired device or emulator:
@@ -55,3 +59,4 @@ If you have any questions, suggestions, or feedback, please feel free to contact
 - The Personalised News app was inspired by the concept of personalised recommendations systems.
 - We would like to express our gratitude to the developers of the NewsCatcher API for providing the data source for our app.
 - Special thanks to the contributors of the open-source libraries used in this project.
+- Thanks to CFG instructors for supporting us throughout this project! [Sid](https://github.com/snotani) and [Amy](https://github.com/amystell)
