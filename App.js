@@ -12,8 +12,6 @@ import Continentcountries from "./src/screens/ContinentCountries";
 import Profile from "./src/screens/Profile"
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

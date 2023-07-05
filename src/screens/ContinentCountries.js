@@ -68,7 +68,7 @@ const ContinentCountries = ({ route, navigation }) => {
 
 	React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: 'My Screen',
+      headerTitle: 'Select News Country',
       headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
 		});
 	}, [navigation]);
