@@ -59,4 +59,4 @@ If you have any questions, suggestions, or feedback, please feel free to contact
 - The Personalised News app was inspired by the concept of personalised recommendations systems.
 - We would like to express our gratitude to the developers of the NewsCatcher API for providing the data source for our app.
 - Special thanks to the contributors of the open-source libraries used in this project.
-- Thanks to CFG instructors for supporting us throughout this project! [Sid](https://github.com/snotani) and [Amy](https://github.com/amystell)
+- Thanks to CFG instructors for supporting us throughout this project! [Sid](https://github.com/snotani) and [Amy](https://github.com/amystell).
