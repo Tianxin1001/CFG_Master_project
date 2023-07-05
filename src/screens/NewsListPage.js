@@ -10,6 +10,7 @@ import {
 	ScrollView,
 } from "react-native";
 import { API_KEY } from "../../config/NewscatcherAPIKey";
+import { useNavigation } from "@react-navigation/native";
 // import WelcomeMessage from "../components/welcomeMessage";
 import UserProfileButton from '../components/UserProfileButton';
 
@@ -18,17 +19,19 @@ export default function NewsListPage({ route }) {
 	const [news, setNews] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
+	const navigation = useNavigation();
+
 	const handleProfilePress = () => {
 		navigation.navigate('Profile');
 	  };
 
 
-	React.useLayoutEffect(() => {
+	  useEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'My Screen',
+		  headerTitle: 'News List',
 		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
-			});
-		}, [navigation]);
+		});
+	  }, [navigation]);
 
 	const categoriesList = [
 		"news",
@@ -129,7 +132,7 @@ export default function NewsListPage({ route }) {
 						source={require("../../assets/loading_anime.gif")}
 						style={[
 							styles.loadingImage,
-							{ width: 450, height: 800, alignSelf: "center" },
+							{ width: 450, height: 820, alignSelf: "center" },
 						]}
 						resizeMode="cover"
 					/>

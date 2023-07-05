@@ -15,7 +15,7 @@ export default function NewsCategorySelectionPage() {
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
-		  headerTitle: 'My Screen',
+		  headerTitle: 'Select News Category',
 		  headerRight: () => <UserProfileButton onPress={handleProfilePress} />,
 			});
 		}, [navigation]);
@@ -29,28 +29,34 @@ export default function NewsCategorySelectionPage() {
 	};
 
 	const handleGetNews = () => {
-		navigation.navigate("NewsListPage", {
+		if (selectedCategories.length === 0) {
+		  // Show an alert or perform any desired action to inform the user
+		  alert("Please select at least one category");
+		} else {
+		  navigation.navigate("NewsListPage", {
 			selectedCategories: selectedCategories,
 			allCategories: [
-				"news",
-				"sport",
-				"tech",
-				"world",
-				"finance",
-				"politics",
-				"business",
-				"economics",
-				"entertainment",
-				"beauty",
-				"travel",
-				"music",
-				"food",
-				"science",
-				"gaming",
-				"energy",
+			  "news",
+			  "sport",
+			  "tech",
+			  "world",
+			  "finance",
+			  "politics",
+			  "business",
+			  "economics",
+			  "entertainment",
+			  "beauty",
+			  "travel",
+			  "music",
+			  "food",
+			  "science",
+			  "gaming",
+			  "energy",
 			],
-		});
-	};
+		  });
+		}
+	  };
+	  
 
 	return (
 		<View style={styles.container}>
