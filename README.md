@@ -34,6 +34,9 @@ Follow these steps to install and run the Personalised News app on your desired 
 
 *Note: Make sure you have `Node.js` and `npm(Node Package Manager)` installed on your machine. These instructions provide a step by step guide to clone the repository, install the required dependencies and libraries, and start the development server.*
 
+
+*If you reach the API query limitation, please change the API key in NewscatcherAPIkey.js in the config folder.*
+
 ## 💻 Technologies Used
 - `React Native`: A JavaScript framework for building native mobile applications
 - `Redux`: A state management library for managing application state.
